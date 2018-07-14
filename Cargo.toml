@@ -1,0 +1,6 @@
+[package]
+name = "yew-app"
+version = "0.1.0"
+authors = ["Marshall Bowers <elliott.codes@gmail.com>"]
+
+[dependencies]
