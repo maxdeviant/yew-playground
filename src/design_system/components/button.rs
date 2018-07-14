@@ -7,11 +7,11 @@ pub enum Color {
 }
 
 impl Color {
-    pub fn to_css(self) -> String {
+    pub fn to_css(&self) -> String {
         match self {
-            Self::White => String::from("white"),
+            Color::White => String::from("#fff"),
             // TODO: This should get pulled from the theme.
-            Self::Primary => String::from("mediumseagreen"),
+            Color::Primary => String::from("mediumseagreen"),
         }
     }
 }
