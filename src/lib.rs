@@ -1,6 +1,9 @@
 #[macro_use]
 extern crate yew;
 
+mod counter;
+
+use counter::Counter;
 use yew::prelude::*;
 
 pub struct Model {
@@ -8,11 +11,11 @@ pub struct Model {
 }
 
 pub struct State {
-    app_name: String
+    app_name: String,
 }
 
 pub enum Msg {
-    Empty
+    Empty,
 }
 
 impl Component for Model {
@@ -21,7 +24,7 @@ impl Component for Model {
 
     fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
         let state = State {
-            app_name: String::from("My App")
+            app_name: String::from("My App"),
         };
         Model { state }
     }
@@ -39,6 +42,7 @@ impl Renderable<Model> for Model {
         html! {
             <div>
                 <h1>{&self.state.app_name}</h1>
+                <Counter: />
             </div>
         }
     }
