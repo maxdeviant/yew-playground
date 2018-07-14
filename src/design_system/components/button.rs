@@ -2,12 +2,14 @@ use yew::prelude::*;
 
 #[derive(PartialEq, Clone)]
 pub enum Color {
+    White,
     Primary,
 }
 
 pub struct Button {
     title: String,
     color: Color,
+    bg: Color,
     onclick: Option<Callback<()>>,
 }
 
@@ -19,6 +21,7 @@ pub enum Msg {
 pub struct Props {
     pub title: String,
     pub color: Color,
+    pub bg: Color,
     pub onclick: Option<Callback<()>>,
 }
 
@@ -26,7 +29,8 @@ impl Default for Props {
     fn default() -> Self {
         Props {
             title: String::from(""),
-            color: Color::Primary,
+            color: Color::White,
+            bg: Color::Primary,
             onclick: None,
         }
     }
@@ -40,6 +44,7 @@ impl Component for Button {
         Button {
             title: props.title,
             color: props.color,
+            bg: props.bg,
             onclick: props.onclick,
         }
     }
@@ -66,11 +71,17 @@ impl Component for Button {
 impl Renderable<Button> for Button {
     fn view(&self) -> Html<Self> {
         let color = match self.color {
+            Color::White => "#fff",
+            Color::Primary => "mediumseagreen",
+        };
+        let bg = match self.bg {
+            Color::White => "#fff",
             Color::Primary => "mediumseagreen",
         };
         let style = format!(
-            "display: inline-block; color: white; background-color: {};",
-            color
+            "border: none; color: {color}; background-color: {bg};",
+            color = color,
+            bg = bg
         );
         html! {
             <button style=style, onclick=|_| Msg::Clicked,>{&self.title}</button>
