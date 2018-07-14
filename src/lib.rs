@@ -2,6 +2,7 @@
 extern crate yew;
 
 mod counter;
+mod design_system;
 
 use counter::Counter;
 use yew::prelude::*;

@@ -1,5 +1,7 @@
 use yew::prelude::*;
 
+use design_system::components::button::{Button, Color};
+
 pub struct Counter {
     value: i32,
     onclick: Option<Callback<i32>>,
@@ -60,9 +62,9 @@ impl Renderable<Counter> for Counter {
     fn view(&self) -> Html<Self> {
         html! {
             <div class="counter",>
-                <button style="display: inline-block;", onclick=|_| Msg::Decrement,>{"-"}</button>
+                <Button: color=Color::Primary, title="-", onclick=|_| Msg::Decrement, />
                 <p style="display: inline-block; padding: 0 20px;",>{self.value}</p>
-                <button style="display: inline-block;", onclick=|_| Msg::Increment,>{"+"}</button>
+                <Button: color=Color::Primary, title="+", onclick=|_| Msg::Increment, />
             </div>
         }
     }
