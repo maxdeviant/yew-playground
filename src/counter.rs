@@ -61,7 +61,7 @@ impl Component for Counter {
 impl Renderable<Counter> for Counter {
     fn view(&self) -> Html<Self> {
         html! {
-            <div class="counter",>
+            <div>
                 <Button: title="-", onclick=|_| Msg::Decrement, />
                 <p style="padding: 0 20px;",>{self.value}</p>
                 <Button: title="+", onclick=|_| Msg::Increment, />
