@@ -6,6 +6,16 @@ pub enum Color {
     Primary,
 }
 
+impl Color {
+    pub fn to_css(self) -> String {
+        match self {
+            Self::White => String::from("white"),
+            // TODO: This should get pulled from the theme.
+            Self::Primary => String::from("mediumseagreen"),
+        }
+    }
+}
+
 pub struct Button {
     title: String,
     color: Color,
@@ -70,18 +80,10 @@ impl Component for Button {
 
 impl Renderable<Button> for Button {
     fn view(&self) -> Html<Self> {
-        let color = match self.color {
-            Color::White => "#fff",
-            Color::Primary => "mediumseagreen",
-        };
-        let bg = match self.bg {
-            Color::White => "#fff",
-            Color::Primary => "mediumseagreen",
-        };
         let style = format!(
             "border: none; color: {color}; background-color: {bg};",
-            color = color,
-            bg = bg
+            color = self.color.to_css(),
+            bg = self.bg.to_css()
         );
         html! {
             <button style=style, onclick=|_| Msg::Clicked,>{&self.title}</button>
