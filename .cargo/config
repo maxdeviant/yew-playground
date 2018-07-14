@@ -1,0 +1,2 @@
+[alias]
+start =  ["web", "start", "--target", "wasm32-unknown-unknown", "--port", "3000"]
